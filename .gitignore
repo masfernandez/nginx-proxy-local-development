@@ -1,0 +1,11 @@
+/vendor/
+/certs/*
+/ca/*.crt
+/ca/*.key
+/ca/*.srl
+
+!ca/masfernandez.crt
+!ca/masfernandez.key
+!certs/wildcard.127.0.0.1.xip.io/*.crt
+!certs/wildcard.127.0.0.1.xip.io/*.key
+!.gitkeep
