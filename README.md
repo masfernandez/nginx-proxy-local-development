@@ -79,12 +79,12 @@ Expiration dates for included content:
 
 As standalone tool:
 ```
-git clone github.com:masfernandez/nginx-proxy-local-development.git
+git clone https://github.com/masfernandez/nginx-proxy-local-development.git
 ```
 
 As composer dependency:
 ```
-composer req masfernandez/nginx-proxy-local-development
+composer req --dev masfernandez/nginx-proxy-local-development:dev-master
 ```
 
 
