@@ -54,8 +54,8 @@ I created this repository to speed up the initial configuration of local develop
 In combination with services such as xip.io (What is xip.io? please read documentation here: [http://xip.io](http://xip.io)), allows also:
 
 - No more /etc/hosts file editing
-- Develop and test local applications from external hosts without complicated configurations
-- Free alternative to Ngrok, Serveo, etc.
+- Develop and test several local applications (webservers) from external hosts without complicated configurations
+- Free alternative to Ngrok, Serveo, etc. (require some NAT configuration on router)
 
 
 
@@ -100,11 +100,11 @@ In short, that subdomain will resolve to your local computer without editing /et
 ping backend.127.0.0.1.xip.io
 ```
 
-If you prefer using your custom SLD like my-cool-app.com instead &lt;whatever&gt;.xip.io, you can also use this repo to generate your own custom CA and certs. El principal inconveniente de esto es que tendrás que apuntar my-cool-app.com a la 127.0.0.1 IP editando el archivo /etc/hosts. Choosing this way I recommend using [Gas Mask](https://github.com/2ndalpha/gasmask).
+If you prefer using your custom SLD like my-cool-app.com instead &lt;whatever&gt;.xip.io, you can also use this repo to generate your own custom CA and certs. The main drawback of this is that you will have to point my-cool-app.com to the 127.0.0.1 IP by editing the /etc/hosts file. Choosing this way I recommend using [Gas Mask](https://github.com/2ndalpha/gasmask).
 
 ### Fast usage as standalone tool
 
-Configure Nginx vhost example located in docker/nginx/conf.d/backend.127.0.0.1.xip.io.conf as your needs.
+Configure the Nginx vhost example located in docker/nginx/conf.d/backend.127.0.0.1.xip.io.conf as your needs.
 
 That vhost example is using:
 - Subdomain: backend.127.0.0.1.xip.io
@@ -172,7 +172,7 @@ Create a docker-compose.yml file in the root of your project or integrate bellow
       - ./vendor/masfernandez/nginx-proxy-local-development/docker/nginx/conf.d:/etc/nginx/conf.d:ro
 ```
 
-Show full example file:
+Full example docker-compose.yml file for your reference:
 ```
 cat vendor/masfernandez/nginx-proxy-local-development/docker-compose-example-proxy.yml
 ```
@@ -259,7 +259,11 @@ Valid for domains like web.my-new-site.com, backend.my-new-site.com, etc.
 ````
 ./gen-cert.sh wildcard.xip.io
 ````
-Because: [Stackoverflow](https://serverfault.com/questions/933374/can-a-wildcard-ssl-certificate-secure-host-names-of-various-depths)
+Actually is not wrong at all, but this depth level of wildcard is destined to configure the host IP to resolve on xip.io DNS, like for example 192.168.1.10.xip.io will resolve at 192.168.1.1 IP on your local network.
+
+Using the above wildcard certificate you will have to run each webserver on a different IP of your network. We want all webservers availables at locahost for development. 
+
+Explanation here: [Stackoverflow](https://serverfault.com/questions/933374/can-a-wildcard-ssl-certificate-secure-host-names-of-various-depths)
 
 
 ### Validate cert
