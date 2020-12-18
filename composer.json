@@ -1,0 +1,13 @@
+{
+    "name": "masfernandez/nginx-proxy-local-development",
+    "description": "Easy management for SSL/TLS certificates and proxying local webservers for fast development setups!",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Miguel Ángel Sánchez Fernández",
+            "email": "mangel.sanfer@gmail.com"
+        }
+    ],
+    "require": {}
+}

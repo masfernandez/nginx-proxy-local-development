@@ -1,0 +1,14 @@
+version: "3.4"
+
+services:
+
+  # Merge this service into your current docker-compose.yml file
+  proxy:
+    image: nginx:latest
+    ports:
+      - "443:443"
+    volumes:
+      # Example data, with backend.127.0.0.1.xip.io cert configured
+      - ./vendor/masfernandez/nginx-proxy-local-development/ca:/etc/nginx/ca:ro
+      - ./vendor/masfernandez/nginx-proxy-local-development/certs/wildcard.127.0.0.1.xip.io:/etc/nginx/certs:ro
+      - ./vendor/masfernandez/nginx-proxy-local-development/docker/nginx/conf.d:/etc/nginx/conf.d:ro
